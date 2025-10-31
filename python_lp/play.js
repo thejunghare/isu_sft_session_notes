@@ -1,4 +1,4 @@
-import Mood from './Mood.jsx'
+import Mood from './Mood.js'
 import { useState, useEffect } from 'react'
 import './App.css'
 
