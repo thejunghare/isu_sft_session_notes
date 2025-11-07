@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { MoodContext } from "./MoodContext";
 
 function Mood() {
-  const { myMood } = useContext(MoodContext);
+  const { mood } = useContext(MoodContext);
 
   return (
     <div>
-      <p>I am {myMood}</p>
+      <p>I am {mood}</p>
     </div>
   );
 }
