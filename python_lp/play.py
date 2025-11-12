@@ -1,11 +1,10 @@
 # for pratice
 
-fname = "prasad"
-print(fname[0])
-print(fname, id(fname))
-fname = "shridhar"
-print(fname , id(fname))
+nums = {5,6,7,7}
 
-coll = (1,2,3)
+# print(nums[0])
 
-ccoll = [1,2,3]
+for x in nums:
+  print(x)
+
+nums.add(8)
