@@ -1,17 +1,18 @@
 fname = "Bassi"
 
-# access one character
-print(fname[0])
+# Access one character by index
+print(fname[0])        # Output: B
 
+# String methods (functions)
+print(fname.upper())   # Output: BASSI
+print(fname.lower())   # Output: bassi
+print(fname.title())   # Output: Bassi
 
-# some methods/function
-fname.upper()
-fname.lower()
-fname.title()
+# Strings are immutable
+# fname[0] = 2   # TypeError: 'str' object does not support item assignment
 
-# updating
-fname[0] = 2 # will give error as string are immutable
+# Reassignment (creating a new string)
+fname = "gatik"
 
-fname=  "gatik"
-
-print(fname[-4]) #p
+# Negative indexing
+print(fname[-4])       # Output: a

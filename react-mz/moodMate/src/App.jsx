@@ -2,6 +2,7 @@ import Mood from "./Mood.jsx";
 import { useState } from "react";
 import "./App.css";
 import CreateAccount from './createAccount';
+import { MoodContext } from './context/MoodContext';
 
 function initalMood() {
   console.log("running...");
@@ -10,10 +11,10 @@ function initalMood() {
 
 function App() {
   // // const [myMood, setMyMood] = useState(() => initialMood());
-  // const [myMood, setMyMood] = useState(() => {
-  //   console.log("running...");
-  //   return "Happy";
-  // });
+  const [mood, setMood] = useState(() => {
+    console.log("running...");
+    return "Happy";
+  });
 
   // const [count, setCount] = useState(() => {
   //   console.log("running...");
@@ -69,7 +70,10 @@ function App() {
 
       <li></li> */}
 
-      <CreateAccount />
+      <MoodContext.Provider value={{ mood, setMood }} >
+        <Mood />
+        {/* <CreateAccount /> */}
+      </MoodContext.Provider>
 
     </div>
   );
