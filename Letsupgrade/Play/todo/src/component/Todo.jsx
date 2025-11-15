@@ -36,7 +36,7 @@ function Todo() {
     if (editIndex !== null) {
       // update flow
       const updated = [...todos];
-      updated[editIndex] = todo;
+      updated[editIndex] = todo;              
       setTodos(updated);
       setEditIndex(null);
     } else {
