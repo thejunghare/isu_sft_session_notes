@@ -1,59 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-const initialExpense = {
-  title: "",
-  amount: "",
-  category: "Other",
-  date: "",
-};
+export default function ExpenseForm({ onSubmit, initialData = null, isEditing = false, onCancel }) {
+  const [description, setDescription] = useState('');
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('Food');
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
-export default function ExpenseForm({ onAdd }) {
-  const [expense, setExpense] = useState(() => {
-    return initialExpense;
-  });
+  useEffect(() => {
+    if (initialData) {
+      setDescription(initialData.description);
+      setAmount(initialData.amount);
+      setCategory(initialData.category);
+      setDate(initialData.date);
+    }
+  }, [initialData]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAdd(expense);
-    setExpense(initialExpense);
+    if (!description.trim() || !amount) return;
+
+    const expenseData = {
+      description: description.trim(),
+      amount: parseFloat(amount),
+      category,
+      date
+    };
+
+    if (isEditing) {
+      onSubmit(initialData.id, expenseData);
+    } else {
+      onSubmit(expenseData);
+    }
+
+    // Reset form
+    setDescription('');
+    setAmount('');
+    setCategory('Food');
+    setDate(new Date().toISOString().split('T')[0]);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <div className="row">
+    <form className="expense-form" onSubmit={handleSubmit}>
+      <h2>{isEditing ? 'Edit Expense' : 'Add New Expense'}</h2>
+
+      <div className="form-row">
         <input
-          value={expense.title}
-          onChange={(e) => setExpense({ ...expense, title: e.target.value })}
-          placeholder="Title"
+          type="text"
+          placeholder="Description (e.g., Groceries)"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          required
         />
+
         <input
-          value={expense.amount}
-          onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
-          placeholder="Amount"
           type="number"
+          placeholder="Amount"
+          value={amount}
+          onChange={e => setAmount(e.target.value)}
+          min="0"
+          step="0.01"
+          required
         />
       </div>
 
-      <div className="row">
-        <select
-          value={expense.category}
-          onChange={(e) => setExpense({ ...expense, category: e.target.value })}
-        >
-          <option value="Food">Food</option>
-          <option value="Travel">Travel</option>
-          <option value={"Shopping"}>Shopping</option>
-          <option value={"Bills"}>Bills</option>
-          <option value={"Entertainment"}>Entertainment</option>
-          <option value={"Other"}>Other</option>
+      <div className="form-row">
+        <select value={category} onChange={e => setCategory(e.target.value)}>
+          <option>Food</option>
+          <option>Transport</option>
+          <option>Entertainment</option>
+          <option>Bills</option>
+          <option>Shopping</option>
+          <option>Health</option>
+          <option>Other</option>
         </select>
 
         <input
-          value={expense.date}
-          onChange={(e) => setExpense({ ...expense, date: e.target.value })}
           type="date"
+          value={date}
+          onChange={e => setDate(e.target.value)}
+          required
         />
+      </div>
 
-        <button type="submit">Add</button>
+      <div className="form-actions">
+        <button type="submit" className="btn-primary">
+          {isEditing ? 'Update' : 'Add'} Expense
+        </button>
+        {isEditing && (
+          <button type="button" className="btn-secondary" onClick={onCancel}>
+            Cancel
+          </button>
+        )}
       </div>
     </form>
   );

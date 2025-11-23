@@ -28,7 +28,7 @@ function Todo() {
     // let todo = document.getElementById("todo-input").value;
 
     // validations -> length of todo title, due date can't be empty
-    if (todo.title.length === 3) {
+    if (todo.letitlength === 3) {
       alert("hey boss todo can't be this short!");
       return;
     }
@@ -36,7 +36,7 @@ function Todo() {
     if (editIndex !== null) {
       // update flow
       const updated = [...todos];
-      updated[editIndex] = todo;              
+      updated[editIndex] = todo;
       setTodos(updated);
       setEditIndex(null);
     } else {

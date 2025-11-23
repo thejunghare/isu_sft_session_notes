@@ -1,0 +1,171 @@
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* PAGE BACKGROUND + CENTERING */
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        Segoe UI,
+        Roboto,
+        sans-serif;
+    background: #efefef;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* MAIN APP CONTAINER */
+.body {
+    width: 450px;
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* FORM SECTION */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    gap: 6px;
+}
+
+/* INPUT FIELDS */
+input[type="text"],
+input[type="date"] {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.15);
+}
+
+/* SUBMIT BUTTON */
+button[type="submit"] {
+    background: #007aff;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #005fcc;
+}
+
+/* SECTION TITLES */
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* LIST WRAPPER */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* TODO ITEM CARD */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    background: #fafafa;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    transition: background 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f0f8ff;
+}
+
+/* TEXT */
+.todo-text {
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* CHECKBOX STYLING */
+.todo-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #007aff;
+    cursor: pointer;
+}
+
+/* UPDATE + DELETE BUTTONS */
+.update-button,
+.delete-button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+/* Update style */
+.update-button {
+    background: #ffecb3;
+    color: #634900;
+}
+
+.update-button:hover {
+    background: #ffe08a;
+}
+
+/* Delete style */
+.delete-button {
+    background: #ffb3b3;
+    color: #7a0000;
+}
+
+.delete-button:hover {
+    background: #ff8f8f;
+}
+
+/* EMPTY STATE */
+p {
+    font-size: 14px;
+    font-style: italic;
+    color: #777;
+    padding-left: 4px;
+}

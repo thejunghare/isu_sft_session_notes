@@ -1,27 +1,40 @@
-import React from "react";
-
-export default function ExpenseList({ items = [], onDelete }) {
-  if (!items.length) return <p>No expenses added yet.</p>;
+import React from 'react'
+export default function ExpenseList({ expenses, onDelete, onEdit }) {
+  if (expenses.length === 0) {
+    return (
+      <div className="expense-list empty">
+        <p>📭 No expenses found. Start tracking your spending!</p>
+      </div>
+    );
+  }
 
   return (
-    <ul className="list">
-      {items.map((item) => (
-        <li key={item.id} className="list-item">
-          <div className="left">
-            <div className="title">{item.title}</div>
-            <div className="meta">
-              {item.date} • {item.category}
+    <div className="expense-list">
+      <h2>Recent Expenses ({expenses.length})</h2>
+
+      {expenses.map(expense => (
+        <div key={expense.id} className="expense-item">
+          <div className="expense-info">
+            <div className="expense-header">
+              <strong>{expense.description}</strong>
+              <span className={`category-badge ${expense.category.toLowerCase()}`}>
+                {expense.category}
+              </span>
             </div>
+            <small className="expense-date">{expense.date}</small>
           </div>
 
-          <div className="right">
-            <div className="amount">₹ {item.amount}</div>
-            <button className="delete" onClick={() => onDelete(item.id)}>
-              Delete
+          <div className="expense-actions">
+            <span className="expense-amount">₹{expense.amount.toFixed(2)}</span>
+            <button className="btn-edit" onClick={() => onEdit(expense)}>
+              ✏️ Edit
+            </button>
+            <button className="btn-delete" onClick={() => onDelete(expense.id)}>
+              🗑️ Delete
             </button>
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
